@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+Welcome to HXNYC
+{% if course_list %}
+    <ul>
+        {% for course in course_list %}
+        <li> {{course_type}} <a href="/course/{{course.id}}" style="color:blue">{{ course.course_name}}</a> <a>{{course.course_type}}</a></li>
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <p>No Courses are available</p>
+{% endif %}
+
+{% endblock %}

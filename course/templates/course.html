@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="margin:auto; width:50%;">
+
+    {% if course %}
+        <div class="position_name" z>
+            <h2>Course Name：{{course.course_name}} </h2>
+            Course Type:
+            {{course.course_type}} <p></p>
+        </div>
+    <hr>
+    <div class="position_responsibility" style="width:600px;">
+        <h3>Course Description：</h3>
+        <pre style="font-size:16px">{{course.course_desp}}
+        </pre>
+        <p></p>
+    </div><br>
+
+
+    <div class="register_course">
+        <input type="button" class="btn btn-primary" style="width:120px;" value="register"/>
+    </div>
+    {% else %}
+    <p>No courses are available</p>
+    {% endif %}
+
+{% endblock %}
+</div>
