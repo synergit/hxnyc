@@ -52,7 +52,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #         return SECRET_KEY
 #
 # # Make this unique, and don't share it with anybody.
-SECRET_KEY = SECRET_KEY
+# SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
