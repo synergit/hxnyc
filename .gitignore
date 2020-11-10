@@ -1,0 +1,10 @@
+db.sqlite3
+local-dev
+
+.DS_Store
+
+__pycache__/
+
+.idea/
+
+.vscode/
