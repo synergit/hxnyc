@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from .secret_key import *
+try:
+    from .secret_key import *
+except ImportError:
+    pass
 # import os, sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
