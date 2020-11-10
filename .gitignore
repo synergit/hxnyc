@@ -8,3 +8,5 @@ __pycache__/
 .idea/
 
 .vscode/
+
+settings/secret_key.py
