@@ -18,3 +18,11 @@ class Course(models.Model):
     creator = models.ForeignKey(User, verbose_name="creator", null=True, on_delete=models.SET_NULL)
     created_date = models.DateTimeField(verbose_name="created date", default=datetime.now)
     modified_date = models.DateTimeField(verbose_name="modified data", default=datetime.now)
+
+
+class Teacher(models.Model):
+    teacher_name = models.CharField(max_length=250, blank=False, verbose_name="teacher name")
+    teacher_email = models.CharField(max_length=250, blank=False, verbose_name="teacher email")
+    creator = models.ForeignKey(User, verbose_name="creator", null=True, on_delete=models.SET_NULL)
+    created_date = models.DateTimeField(verbose_name="created date", default=datetime.now)
+    modified_date = models.DateTimeField(verbose_name="modified data", default=datetime.now)

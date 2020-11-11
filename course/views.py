@@ -7,7 +7,7 @@ from django.template import RequestContext, loader
 from course.models import Course, CourseTypes
 # Create your views here.
 
-def courselist(request):
+def index(request):
     course_list = Course.objects.order_by('course_type')
     template = loader.get_template('courselist.html')
 
