@@ -9,7 +9,7 @@ from course.models import Course, CourseTypes
 
 def index(request):
     course_list = Course.objects.order_by('course_type')
-    template = loader.get_template('courselist.html')
+    template = loader.get_template('index.html')
 
     context = {'course_list': course_list}
     for course in course_list:
