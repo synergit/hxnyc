@@ -10,3 +10,6 @@ __pycache__/
 .vscode/
 
 settings/secret_key.py
+
+
+static/
