@@ -13,3 +13,4 @@ settings/secret_key.py
 
 
 static/
+opentelemetry/
