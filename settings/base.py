@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "course"
+    "course", 
+    "enrollment"
 ]
 
 MIDDLEWARE = [
@@ -84,7 +85,7 @@ WSGI_APPLICATION = 'hxnyc.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'hxnyc',
+        'NAME': 'chloe',
         'USER': 'postgres',
         'PASSWORD': '123',
         'HOST': 'localhost'
