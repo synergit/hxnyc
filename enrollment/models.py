@@ -16,10 +16,10 @@ class StudentExt(models.Model):
     # last_editor = models.CharField(max_length=256, blank=True, verbose_name='last editor')
 
 
-    # class Meta:
+    class Meta:
     #     db_table = 'student'
-    #     verbose_name = 'student'
-    #     verbose_name_plural = 'students'
+        verbose_name = 'student'
+        verbose_name_plural = 'students'
 
     #     permissions = [
     #         ("export", "Can export student list"),
