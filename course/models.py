@@ -26,3 +26,17 @@ class Teacher(models.Model):
     creator = models.ForeignKey(User, verbose_name="creator", null=True, on_delete=models.SET_NULL)
     created_date = models.DateTimeField(verbose_name="created date", default=datetime.now)
     modified_date = models.DateTimeField(verbose_name="modified data", default=datetime.now)
+
+class Registration(models.Model):
+    student_name = models.CharField(max_length=135, verbose_name="student name")
+    contact_name = models.ForeignKey(User, verbose_name="contact_name", null=True, on_delete=models.SET_NULL)
+    address = models.CharField(max_length=135, verbose_name="address")
+    phone = models.CharField(max_length=135,  verbose_name="phone")
+    email = models.EmailField(max_length=135, blank=True, verbose_name="email")
+    registered_class = models.CharField(max_length=135, blank=True, verbose_name="registered class")
+    created_date = models.DateTimeField(verbose_name="created date", default=datetime.now)
+    modified_date = models.DateTimeField(verbose_name="modified data", default=datetime.now)
+
+    class Meta:
+        verbose_name = "Registration"
+        verbose_name_plural = "Registrations"

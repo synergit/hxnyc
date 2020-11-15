@@ -20,7 +20,7 @@
 
 
     <div class="register_course">
-        <input type="button" class="btn btn-primary" style="width:120px;" value="register"/>
+        <input type="button" class="btn btn-primary" style="width:120px;" value="register" onclick="location.href='/register/add/?registered_class={{course.course_name}}'"/>
     </div>
     {% else %}
     <p>No courses are available</p>
