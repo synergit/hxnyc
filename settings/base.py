@@ -22,7 +22,8 @@ except ImportError:
 # import os, sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -129,9 +130,67 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT= os.path.join(BASE_DIR, 'static')
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
 
+        'mail_admins': { # Add Handler for mail_admins for `warning` and above
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+        'file': {
+            #'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            'filename': os.path.join(os.path.dirname(BASE_DIR), 'hxnyc.admin.log'),
+        },
 
+        # 'performance': {
+        #     #'level': 'INFO',
+        #     'class': 'logging.FileHandler',
+        #     'formatter': 'simple',
+        #     'filename': os.path.join(os.path.dirname(BASE_DIR), 'hxnyc.performance.log'),
+        # },
+    },
+
+    'root': {
+        'handlers': ['console', 'file'],
+        'level': 'INFO',
+    },
+
+    'loggers': {
+        "django  ": {
+            "handlers": ["console", "file"],
+            "level": "DEBUG",
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+
+        # "interview.performance": {
+        #     "handlers": ["console", "performance"],
+        #     "level": "INFO",
+        #     "propagate": False,
+        # },
+    },
+}
 
 # for production env. 
 try:

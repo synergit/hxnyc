@@ -5,9 +5,17 @@ from django.http import Http404
 from django.template import RequestContext, loader
 
 from course.models import Course, CourseTypes
+# import the logging library
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
 # Create your views here.
 
+
 def index(request):
+    logger.info("Requesting index page.")
     course_list = Course.objects.order_by('course_type')
     template = loader.get_template('index.html')
 
@@ -18,11 +26,12 @@ def index(request):
 
 
 def detail(request, course_id):
+    logger.info('Displaying course {}'.format(course_id))
     try:
         course = Course.objects.get(pk=course_id)
         course.course_name = course.course_name
         course.course_type = CourseTypes[course.course_type][1]
-        # logger.info('course retrieved from db :%s' % course_id)
+        # logger.info('course retrieved from db :%t' % course_id)
     except Course.DoesNotExist:
         raise Http404("Course does not exist")
     return render(request, 'course.html', {'course': course})
