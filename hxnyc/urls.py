@@ -21,7 +21,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r"^", include("course.urls")),
+    url(r'^accounts/', include('registration.backends.simple.urls')),     
     path('admin/', admin.site.urls),
   ]
-# Below is only for development
-# ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
