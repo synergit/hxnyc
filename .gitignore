@@ -15,5 +15,6 @@ settings/secret_key.py
 static/
 opentelemetry/
 
-
 hxnyc.admin.log
+
+requirements.txt 
