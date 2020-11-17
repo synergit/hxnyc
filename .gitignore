@@ -1,5 +1,5 @@
 db.sqlite3
-local-dev
+venv
 
 .DS_Store
 
