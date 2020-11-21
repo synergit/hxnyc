@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
-
+from django_prometheus.models import ExportModelOperationsMixin
 CourseTypes = [
     (0, "chinese"),
     (1, "culture"),
@@ -27,7 +27,8 @@ class Teacher(models.Model):
     created_date = models.DateTimeField(verbose_name="created date", default=datetime.now)
     modified_date = models.DateTimeField(verbose_name="modified data", default=datetime.now)
 
-class Registration(models.Model):
+class Registration(ExportModelOperationsMixin('Registration'), models.Model):
+# class Registration(models.Model):
     student_name = models.CharField(max_length=135, verbose_name="student name")
     contact_name = models.ForeignKey(User, verbose_name="contact_name", null=True, on_delete=models.SET_NULL)
     address = models.CharField(max_length=135, verbose_name="address")
