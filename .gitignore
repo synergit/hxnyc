@@ -13,7 +13,8 @@ settings/secret_key.py
 
 
 static/
-opentelemetry/*_example.py
+# opentelemetry/*_example.py
+opentelemetry/
 
 hxnyc.admin.log
 
