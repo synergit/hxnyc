@@ -48,11 +48,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'course', 
     'enrollment',
-    'django_prometheus',
+    # 'django_prometheus',
 ]
 
 MIDDLEWARE = [
-    'django_prometheus.middleware.PrometheusBeforeMiddleware',
+    # 'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,7 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_prometheus.middleware.PrometheusAfterMiddleware',
+    # 'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 ROOT_URLCONF = 'hxnyc.urls'
@@ -90,7 +90,8 @@ WSGI_APPLICATION = 'hxnyc.wsgi.application'
 # this is password for dev env
 DATABASES = {
     'default': {
-        'ENGINE': 'django_prometheus.db.backends.postgresql',
+        # 'ENGINE': 'django_prometheus.db.backends.postgresql', # this is only for django-prometheus, no OTLM involved
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'chloe',
         'USER': 'postgres',
         'PASSWORD': '123',
