@@ -13,6 +13,28 @@ logger = logging.getLogger(__name__)
 
 # Create your views here.
 
+from opentelemetry import metrics
+from opentelemetry.exporter.opencensus.metrics_exporter import (
+    OpenCensusMetricsExporter,
+)
+from opentelemetry.sdk.metrics import Counter, Meter, MeterProvider
+from opentelemetry.exporter.prometheus import PrometheusMetricsExporter
+
+# TODO: move the receiver and exporter code out to be reused by other components
+exporter = OpenCensusMetricsExporter(
+    service_name="basic-service", endpoint="localhost:55678"
+)
+
+metrics.set_meter_provider(MeterProvider())
+meter = metrics.get_meter(__name__)
+metrics.get_meter_provider().start_pipeline(meter, exporter, 5)
+
+requests_counter = meter.create_counter(
+    name="hxnyc",
+    description="number of requests",
+    unit="1",
+    value_type=int,
+)
 
 def index(request):
     logger.info("Requesting index page.")
@@ -20,17 +42,22 @@ def index(request):
     context = {'course_list': course_list}
     for course in course_list:
         course.course_type = CourseTypes[course.course_type][1]
-    # return HttpResponse(template.render(context))
+    
+    
+    requests_counter.add(1, {"page": "index"})
+
     return render(request, 'index.html', context)
 
 
 def detail(request, course_id):
     logger.info('Displaying course {}'.format(course_id))
+
+    # OTLM
+    requests_counter.add(1, {"page": f'detail:{course_id}'})
     try:
         course = Course.objects.get(pk=course_id)
         course.course_name = course.course_name
         course.course_type = CourseTypes[course.course_type][1]
-        # logger.info('course retrieved from db :%t' % course_id)
     except Course.DoesNotExist:
         raise Http404("Course does not exist")
     return render(request, 'course.html', {'course': course})
@@ -44,6 +71,8 @@ class RegisterCreateView(LoginRequiredMixin, CreateView):
 
     def get_initial(self):
         initial = {}
+        
+        
         for x in self.request.GET:
             initial[x] = self.request.GET[x]
         return initial
@@ -52,4 +81,6 @@ class RegisterCreateView(LoginRequiredMixin, CreateView):
         self.object = form.save(commit=False)
         self.object.contact_name = self.request.user
         self.object.save()
+        # OTLM
+        requests_counter.add(1, {"RegisterCreateView-save": f'{self.object.contact_name}'})
         return HttpResponseRedirect(self.get_success_url())
