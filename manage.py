@@ -10,7 +10,8 @@ def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings.base')
 
     # This call is what makes the Django application be instrumented
-    DjangoInstrumentor().instrument()
+    # Notes: commenting it out because OTLM-opencensus-prometheus is instrumented in views.py
+    # DjangoInstrumentor().instrument()
 
     try:
         from django.core.management import execute_from_command_line
