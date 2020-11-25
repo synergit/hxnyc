@@ -52,7 +52,7 @@ def index(request):
 def detail(request, course_id):
     logger.info('Displaying course {}'.format(course_id))
 
-    # OTLM
+    # OTEL
     requests_counter.add(1, {"page": f'detail:{course_id}'})
     try:
         course = Course.objects.get(pk=course_id)
@@ -81,6 +81,6 @@ class RegisterCreateView(LoginRequiredMixin, CreateView):
         self.object = form.save(commit=False)
         self.object.contact_name = self.request.user
         self.object.save()
-        # OTLM
+        # OTEL
         requests_counter.add(1, {"RegisterCreateView-save": f'{self.object.contact_name}'})
         return HttpResponseRedirect(self.get_success_url())
