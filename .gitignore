@@ -13,7 +13,7 @@ settings/secret_key.py
 
 
 static/
-# opentelemetry/*_example.py
+
 opentelemetry/
 
 hxnyc.admin.log
@@ -21,3 +21,5 @@ hxnyc.admin.log
 requirements.txt 
 
 prometheus-2.22.2.darwin-amd64/
+
+consent-manager/
