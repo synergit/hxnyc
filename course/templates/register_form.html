@@ -1,6 +1,22 @@
-<H1>Register Class</H1>
-<form method="post">
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{% load i18n %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<form method="post" method="post" class="form" enctype="multipart/form-data" style="width:600px;margin-left:5px">
     {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="submit">
+    {% bootstrap_form form %}
+
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      Submit
+    </button>
+    {% endbuttons %}
 </form>

@@ -1,3 +1,14 @@
+{% load bootstrap4 %}
+
+{% load i18n %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'course/style.css' %}">
@@ -104,7 +115,7 @@
       window.consentManagerConfig = function(exports) {
         return {
           container: '#consent-container',
-          writeKey: '',
+          writeKey: 'FlKyv7qxsoHb2OqB9ZSrSRFClRVaoBc2',
           // shouldRequireConsent: false,
           bannerContent:
             'We use cookies (and other similar technologies) to collect data to improve your experience on our site.',
