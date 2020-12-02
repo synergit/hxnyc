@@ -20,8 +20,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r"^", include("course.urls")),
-    url(r'^accounts/', include('registration.backends.simple.urls')),     
+    url(r"^", include("course.urls")),   
+    path('i18n/', include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
+    url(r'^accounts/', include('registration.backends.simple.urls')),   
     # path('', include('django_prometheus.urls')),
   ]

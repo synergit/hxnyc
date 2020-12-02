@@ -13,27 +13,140 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'course/style.css' %}">
 
-<h1 style="margin:auto; width:50%;">HXNYC</h1>
+<h1 style="margin:auto; width:50%;"> {% trans "HXNYC" %} </h1>
 <p></p>
 
 {% block header %}
 
-<a href="/" style="text-decoration: none; color:#007bff">Homepage</a>
+<a href="/" style="text-decoration: none; color:#007bff">{% translate "Homepage" %}</a>
 
 {% if user.is_authenticated %}
-<a href="/accounts/logout" style="text-decoration: none; color:#007bff">Logout</a>
+<a href="/accounts/logout" style="text-decoration: none; color:#007bff">{% trans "Logout" %}</a>
 {% else %}
-<a href="/accounts/login" style="text-decoration: none; color:#007bff">Login</a>
+<a href="/accounts/login" style="text-decoration: none; color:#007bff">{% trans "Login" %}</a>
 {% endif %}
 
 {% if user.is_authenticated %}
-<p>Hello {{ user.username }} </p>
+<p>{% blocktranslate with user_name=user.username  %} Hello {{ user_name }}, please register classes!{% endblocktranslate %}</p>
 {% else %}
-<p>Welcome to HXNYC, please login and register classes!</p>
+<p>{% trans "Welcome to HXNYC, please login and register classes!" %} </p>
 {% endif %}
 
+<form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}">
+    <select name="language">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        {% for language in languages %}
+            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                {{ language.name_local }} ({{ language.code }})
+            </option>
+        {% endfor %}
+    </select>
+    {% translate "language:" %} {{ LANGUAGE_CODE }}
+	<input type="submit" value={% translate "Switch" %}>
+</form>
+
+{% endblock %}  
+
+<hr>
+
+{% block content %}
 {% endblock %}
 
 <hr>
-{% block content %}
-{% endblock %}
+<!DOCTYPE html>
+<html>
+  <body>
+    <script>
+      !(function() {
+        var analytics = (window.analytics = window.analytics || [])
+        if (!analytics.initialize)
+          if (analytics.invoked)
+            window.console && console.error && console.error('Segment snippet included twice.')
+          else {
+            analytics.invoked = !0
+            analytics.methods = [
+              'trackSubmit',
+              'trackClick',
+              'trackLink',
+              'trackForm',
+              'pageview',
+              'identify',
+              'reset',
+              'group',
+              'track',
+              'ready',
+              'alias',
+              'debug',
+              'page',
+              'once',
+              'off',
+              'on',
+              'addSourceMiddleware'
+            ]
+            analytics.factory = function(t) {
+              return function() {
+                var e = Array.prototype.slice.call(arguments)
+                e.unshift(t)
+                analytics.push(e)
+                return analytics
+              }
+            }
+            for (var t = 0; t < analytics.methods.length; t++) {
+              var e = analytics.methods[t]
+              analytics[e] = analytics.factory(e)
+            }
+            analytics.load = function(t, e) {
+              var n = document.createElement('script')
+              n.type = 'text/javascript'
+              n.async = !0
+              n.src =
+                ('https:' === document.location.protocol ? 'https://' : 'http://') +
+                'cdn.segment.com/analytics.js/v1/' +
+                t +
+                '/analytics.min.js'
+              var o = document.getElementsByTagName('script')[0]
+              o.parentNode.insertBefore(n, o)
+              analytics._loadOptions = e
+            }
+            // analytics.SNIPPET_VERSION = '4.1.0'
+            analytics.SNIPPET_VERSION = "4.13.1";
+            // 
+            // To get started, make sure you're using the latest version of the analytics.js snippet (4.1.0 or above) 
+            // and remove the analytics.load("YOUR_WRITE_KEY"); call (so the consent manager can manage the loading process). 
+            // Then continue onto one of the implementation methods below.
+            // 
+            //analytics.load(""); // CM.js loads a.js? 
+            analytics.page()
+          }
+      })()
+    </script> 
+    <div id="consent-container"></div>
+    <form type="submit" onclick="event.stopPropagation(); window.consentManager.openConsentManager()">
+      Cookie Preferences
+    </form>
+    <script type="application/javascript">
+      window.consentManagerConfig = function(exports) {
+        return {
+          container: '#consent-container',
+          writeKey: 'FlKyv7qxsoHb2OqB9ZSrSRFClRVaoBc2',
+          // shouldRequireConsent: false,
+          bannerContent:
+            'We use cookies (and other similar technologies) to collect data to improve your experience on our site.',
+          bannerSubContent: 'You can change your preferences at any time.',
+          preferencesDialogTitle: 'HXNYC: Website Data Collection Preferences',
+          preferencesDialogContent:
+            'We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site.',
+          cancelDialogTitle: 'Chloe Are you sure you want to cancel?',
+          cancelDialogContent:
+            "Your preferences have not been saved. By continuing to use our website, you're agreeing to our Website Data Collection Policy",
+          closeBehavior: 'accept'
+        }
+      }
+    </script>
+    <!-- Setup the Segment Consent Manager tag -->
+    <script type="text/javascript" src="{% static "js/consent-manager.js" %}" defer></script>
+  </body>
+</html>

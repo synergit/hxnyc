@@ -23,3 +23,5 @@ requirements.txt
 prometheus-2.22.2.darwin-amd64/
 
 consent-manager/
+
+django.mo
