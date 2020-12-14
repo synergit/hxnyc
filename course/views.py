@@ -18,7 +18,7 @@ from opentelemetry.exporter.opencensus.metrics_exporter import (
     OpenCensusMetricsExporter,
 )
 from opentelemetry.sdk.metrics import Counter, Meter, MeterProvider
-from opentelemetry.exporter.prometheus import PrometheusMetricsExporter
+# from opentelemetry.exporter.prometheus import PrometheusMetricsExporter
 
 # TODO: move the receiver and exporter code out to be reused by other components
 exporter = OpenCensusMetricsExporter(
