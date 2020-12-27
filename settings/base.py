@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'course', 
     'enrollment',
+    'rest_framework',
     # 'django_prometheus',
 ]
 

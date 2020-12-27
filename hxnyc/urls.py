@@ -19,11 +19,47 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.auth.models import User
+from course.models import Course
+from rest_framework import routers, serializers, viewsets
+
+# Serializers define the API representation.
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['url', 'username', 'email', 'is_staff']
+
+# ViewSets define the view behavior.
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+# Serializers define the API representation.
+class CourseSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Course
+        fields = '__all__'
+
+# ViewSets define the view behavior.
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'courses', CourseViewSet)
+
 urlpatterns = [
     url(r"^", include("course.urls")),   
     path('i18n/', include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.simple.urls')),   
+    
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+
+
     # path('', include('django_prometheus.urls')),
 ]
 
