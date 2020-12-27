@@ -25,4 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.simple.urls')),   
     # path('', include('django_prometheus.urls')),
-  ]
+]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls))
+    ] + urlpatterns 
