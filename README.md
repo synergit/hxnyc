@@ -1,7 +1,7 @@
 # hxnyc
 
 This is a prototype of a registration system built based on Django framework. 
-
+![Screen Shot 2021-04-19 at 10 55 16 PM](https://user-images.githubusercontent.com/10833201/115330639-7b27b980-a162-11eb-916b-f00be16415e3.png)
 
 A short video or screenshot is alway helpful and attractive.
 
