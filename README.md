@@ -1,5 +1,6 @@
 # hxnyc
 
+## Overview
 hxnyc is a registration system(prototype) built based on Django framework. It showa a journey of using open-source projects to build production ready application :+1: Check the following roadmap for details
 ![Screen Shot 2021-04-19 at 10 55 16 PM](https://user-images.githubusercontent.com/10833201/115330639-7b27b980-a162-11eb-916b-f00be16415e3.png)
 
@@ -11,8 +12,9 @@ Components:
 1. Tracking and metering: OpenTelemetry intergration;
 1. Consent Management: Segment opensource library intergration;
 
-High Level Architecture
+**High Level Architecture**
 
+![Screen Shot 2021-04-20 at 10 01 53 PM](https://user-images.githubusercontent.com/10833201/115486406-9c50de80-a224-11eb-9380-d77c334e7303.png)
 
 ## Installation
 
