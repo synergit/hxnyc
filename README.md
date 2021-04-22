@@ -18,9 +18,17 @@ Components:
 
 ## Installation
 
-
 ## Usage
+Start the appliation and Promethues
+```shell
+. start-app.sh
+```
+Note that your terminal shows the debugging outputs. Stop the web application, simply ctl/command+C
 
+Stop the Promethues service and deactivate the virtual env. 
+```shell
+. stop-app.sh
+```
 ## Support
 Clarify preferred support process. 
 
