@@ -31,6 +31,10 @@ Stop the Promethues service and deactivate the virtual env.
 ```
 ## Support
 ### Dev. Env.
+- install library from requirementx.txt
+```shell
+python -m pip install -r requirements.txt
+```
 ### Production Env. 
 - Alerting system support
 - Security support
