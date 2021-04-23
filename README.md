@@ -30,9 +30,25 @@ Stop the Promethues service and deactivate the virtual env.
 . stop-app.sh
 ```
 ## Support
-Clarify preferred support process. 
+### Dev. Env.
+### Production Env. 
+- Alerting system support
+- Security support
 
 ## Roadmap
+- Containerize Django Application
+- ReadOnlyAdmin
+- Define more metrics for Prometheus
+- Email Notification to confirm user's registration
+- React Frontend
+- Multi-language
+- CSV Data Import/Export
+- Django admin access control
+- Logging and troubleshooting
+- Alerting system integration
+- Sentry or OpenTelemetry?
+- Security enhancement: XSS, CSRF, SQL Injection
+- Celery and Redis?
 
 ## Authors
 Chloe Wang
