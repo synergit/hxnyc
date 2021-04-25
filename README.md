@@ -15,7 +15,7 @@ Components:
 1. Consent Management: Segment opensource library intergration;
 
 **High Level Architecture**
-![Screen Shot 2021-04-20 at 10 01 53 PM](https://user-images.githubusercontent.com/10833201/115486406-9c50de80-a224-11eb-9380-d77c334e7303.png)
+![Screen Shot 2021-04-25 at 1 20 16 PM](https://user-images.githubusercontent.com/10833201/116002734-20121e80-a5c9-11eb-8e4c-6249364836b3.png)
 
 ## Installation
 
