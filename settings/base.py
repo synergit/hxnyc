@@ -99,10 +99,10 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django_prometheus.db.backends.postgresql', # this is only for django-prometheus, no OTLM involved
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'chloe',
+        'NAME': 'postgres', # TODO: 'chloe'
         'USER': 'postgres',
         'PASSWORD': '123',
-        'HOST': 'localhost'
+        'HOST': 'postgres-db'
     }
 }
 
