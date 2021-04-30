@@ -54,18 +54,20 @@ python -m pip install -r requirements.txt
 
 - Containerize Django Application
 
-If still want to use Database called 'chloe':
+
 ```shell
-# run postgres in docker container
-docker exec -it <container name> psql -U <postgres username>
-# then
-postgres=# CREATE DATABASE chloe
 # migrate db ---> MUST TODO to get created data
 docker-compose exec web python manage.py migrate
 ```
 
-However, only `postgres` database works, `chloe` database created but not working
 HOST named `localhost` causes confusion to docker, so name it as `postgres-db`
+
+[Django, Docker, and PostgreSQL Tutorial](https://learndjango.com/tutorials/django-docker-and-postgresql-tutorial)
+
+```shell
+docker-compose up -d --build
+docker-compose down
+```
 
 - ReadOnlyAdmin
 - Define more metrics for Prometheus
